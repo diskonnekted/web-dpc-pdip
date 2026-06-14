@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import React from 'react';
 
 import Home from './pages/public/Home';
@@ -180,6 +180,18 @@ const PublicLayout = ({ children }: { children: React.ReactNode }) => {
 
 // Modern Admin Layout
 const AdminLayout = ({ children }: { children: React.ReactNode }) => {
+  const token = localStorage.getItem('admin_token');
+  const adminUsername = localStorage.getItem('admin_username') || 'Admin';
+
+  if (!token) {
+    return <Navigate to="/login" replace />;
+  }
+
+  const handleLogout = () => {
+    localStorage.removeItem('admin_token');
+    localStorage.removeItem('admin_username');
+    window.location.href = '/login';
+  };
   const adminLinks = [
     { name: 'Dashboard', path: '/admin', icon: <LayoutDashboard size={20} /> },
     { name: 'Pendaftar KIP/PIP', path: '/admin/kip-pip', icon: <Users size={20} /> },
@@ -219,7 +231,10 @@ const AdminLayout = ({ children }: { children: React.ReactNode }) => {
         </nav>
 
         <div className="p-4 border-t border-gray-800">
-          <button className="flex items-center space-x-3 px-4 py-3 w-full rounded-lg text-gray-400 hover:bg-red-500/10 hover:text-brand-red transition-all">
+          <button 
+            onClick={handleLogout}
+            className="flex items-center space-x-3 px-4 py-3 w-full rounded-lg text-gray-400 hover:bg-red-500/10 hover:text-brand-red transition-all"
+          >
             <LogOut size={20} />
             <span className="font-medium">Keluar</span>
           </button>
@@ -230,10 +245,10 @@ const AdminLayout = ({ children }: { children: React.ReactNode }) => {
       <main className="flex-grow flex flex-col h-screen overflow-hidden">
         {/* Admin Topbar */}
         <header className="bg-white dark:bg-zinc-800 h-16 flex items-center justify-between px-8 shadow-sm z-10 border-b dark:border-zinc-700">
-          <h1 className="font-semibold text-gray-800 dark:text-gray-200">Selamat datang, Admin</h1>
+          <h1 className="font-semibold text-gray-800 dark:text-gray-200">Selamat datang, {adminUsername}</h1>
           <div className="flex items-center space-x-4">
-            <div className="w-8 h-8 bg-brand-red text-white rounded-full flex items-center justify-center font-bold">
-              A
+            <div className="w-8 h-8 bg-brand-red text-white rounded-full flex items-center justify-center font-bold uppercase">
+              {adminUsername.charAt(0)}
             </div>
           </div>
         </header>
@@ -268,6 +283,7 @@ import AdminAspirasi from './pages/admin/AdminAspirasi';
 import AdminStruktur from './pages/admin/AdminStruktur';
 import AdminPengaturan from './pages/admin/AdminPengaturan';
 import AdminMultimedia from './pages/admin/AdminMultimedia';
+import Login from './pages/admin/Login';
 
 function App() {
   return (
@@ -283,6 +299,9 @@ function App() {
         <Route path="/gabung" element={<PublicLayout><Gabung /></PublicLayout>} />
         <Route path="/aspirasi" element={<PublicLayout><Aspirasi /></PublicLayout>} />
         
+        {/* Admin Login */}
+        <Route path="/login" element={<Login />} />
+
         {/* Admin Routes */}
         <Route path="/admin" element={<AdminLayout><Dashboard /></AdminLayout>} />
         <Route path="/admin/berita" element={<AdminLayout><AdminBerita /></AdminLayout>} />

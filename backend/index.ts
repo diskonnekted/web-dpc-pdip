@@ -4,6 +4,8 @@ import dotenv from 'dotenv';
 import { PrismaClient } from '@prisma/client';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -21,10 +23,31 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', message: 'PDIP Banjarnegara API is running' });
 });
 
-// Admin Auth Routes (Placeholder)
+// Admin Auth Route
 app.post('/api/auth/login', async (req, res) => {
-  // TODO: implement login
-  res.json({ token: 'dummy-token' });
+  const { username, password } = req.body;
+  try {
+    const user = await prisma.user.findUnique({ where: { username } });
+    if (!user) {
+      return res.status(401).json({ error: 'Username atau password salah' });
+    }
+
+    const isValid = await bcrypt.compare(password, user.password);
+    if (!isValid) {
+      return res.status(401).json({ error: 'Username atau password salah' });
+    }
+
+    // Generate JWT token (expires in 1d)
+    const token = jwt.sign(
+      { id: user.id, username: user.username },
+      process.env.JWT_SECRET || 'pdip_secret_key_123',
+      { expiresIn: '1d' }
+    );
+
+    res.json({ token, username: user.username });
+  } catch (error) {
+    res.status(500).json({ error: 'Terjadi kesalahan pada server' });
+  }
 });
 
 // Articles Routes (Public & Admin)
