@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronRight, Calendar, Users, Shield, Map, FileText, ArrowRight, CheckCircle2, Plus } from 'lucide-react';
+import { Calendar, Users, Shield, Map, FileText, ArrowRight, CheckCircle2, Plus } from 'lucide-react';
 
 const Home = () => {
   // Simple countdown logic for the Event section
