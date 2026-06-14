@@ -1,0 +1,97 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  username  String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Article {
+  id          Int      @id @default(autoincrement())
+  title       String
+  slug        String   @unique
+  content     String
+  imageUrl    String?
+  category    String   // "berita", "kegiatan", "siaran-pers"
+  isPublished Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Structure {
+  id        Int      @id @default(autoincrement())
+  name      String
+  position  String
+  imageUrl  String?
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Setting {
+  id        Int      @id @default(autoincrement())
+  key       String   @unique
+  value     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model RegistrationKipPip {
+  id          Int      @id @default(autoincrement())
+  fullName    String
+  nik         String
+  nisn        String
+  schoolName  String
+  programType String
+  parentName  String
+  address     String
+  phoneNumber String
+  status      String   @default("PENDING")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model MemberRegistration {
+  id          Int      @id @default(autoincrement())
+  fullName    String
+  nik         String
+  dob         String
+  address     String
+  phone       String
+  email       String
+  profession  String
+  status      String   @default("PENDING")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Aspiration {
+  id          Int      @id @default(autoincrement())
+  senderName  String
+  phone       String
+  category    String
+  content     String
+  status      String   @default("UNREAD")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model SocialMediaEmbed {
+  id          Int      @id @default(autoincrement())
+  platform    String   // "YOUTUBE", "INSTAGRAM", "TIKTOK"
+  title       String
+  embedCode   String
+  order       Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
