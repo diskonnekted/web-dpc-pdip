@@ -8,7 +8,7 @@ const Kabar = () => {
 
   useEffect(() => {
     // Fetch articles from backend
-    axios.get('http://localhost:5000/api/articles')
+    axios.get((import.meta.env.VITE_API_URL || 'http://localhost:5000') + '/api/articles')
       .then(res => {
         setArticles(res.data);
         setLoading(false);

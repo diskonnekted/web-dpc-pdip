@@ -20,7 +20,7 @@ const AdminGabung = () => {
 
   const fetchMembers = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/members');
+      const res = await fetch((import.meta.env.VITE_API_URL || 'http://localhost:5000') + '/api/members');
       const data = await res.json();
       setMembers(data);
     } catch (error) {

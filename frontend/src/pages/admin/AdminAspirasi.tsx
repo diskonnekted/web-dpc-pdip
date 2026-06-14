@@ -17,7 +17,7 @@ const AdminAspirasi = () => {
 
   const fetchAspirations = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/aspirations');
+      const res = await fetch((import.meta.env.VITE_API_URL || 'http://localhost:5000') + '/api/aspirations');
       const data = await res.json();
       setAspirations(data);
     } catch (error) {

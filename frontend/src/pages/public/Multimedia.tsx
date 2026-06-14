@@ -18,7 +18,7 @@ const Multimedia = () => {
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const res = await fetch('http://localhost:5000/api/multimedia');
+        const res = await fetch((import.meta.env.VITE_API_URL || 'http://localhost:5000') + '/api/multimedia');
         const data = await res.json();
         setItems(data.filter((item: MultimediaItem) => item.isActive));
       } catch (error) {

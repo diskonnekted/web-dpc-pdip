@@ -10,7 +10,7 @@ const AdminPengaturan = () => {
   useEffect(() => {
     const fetchSettings = async () => {
       try {
-        const res = await fetch('http://localhost:5000/api/settings');
+        const res = await fetch((import.meta.env.VITE_API_URL || 'http://localhost:5000') + '/api/settings');
         const data = await res.json();
         setSettings(prev => ({ ...prev, ...data }));
       } catch (error) {
@@ -27,7 +27,7 @@ const AdminPengaturan = () => {
     setSaving(true);
     setMessage('');
     try {
-      const res = await fetch('http://localhost:5000/api/settings', {
+      const res = await fetch((import.meta.env.VITE_API_URL || 'http://localhost:5000') + '/api/settings', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(settings)

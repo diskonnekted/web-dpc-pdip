@@ -21,7 +21,7 @@ const KabarDetail = () => {
   useEffect(() => {
     const fetchArticle = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/api/articles/${slug}`);
+        const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/articles/${slug}`);
         if (!res.ok) throw new Error('Not found');
         const data = await res.json();
         setArticle(data);

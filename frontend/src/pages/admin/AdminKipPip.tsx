@@ -21,7 +21,7 @@ const AdminKipPip = () => {
 
   const fetchRegistrations = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/kippip');
+      const res = await fetch((import.meta.env.VITE_API_URL || 'http://localhost:5000') + '/api/kippip');
       const data = await res.json();
       setRegistrations(data);
     } catch (error) {

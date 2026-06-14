@@ -17,7 +17,7 @@ const AdminStruktur = () => {
 
   const fetchStructures = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/structures');
+      const res = await fetch((import.meta.env.VITE_API_URL || 'http://localhost:5000') + '/api/structures');
       const data = await res.json();
       setStructures(data);
     } catch (error) {
@@ -35,7 +35,7 @@ const AdminStruktur = () => {
     e.preventDefault();
     try {
       const method = formData.id ? 'PUT' : 'POST';
-      const url = formData.id ? `http://localhost:5000/api/structures/${formData.id}` : 'http://localhost:5000/api/structures';
+      const url = formData.id ? `http://localhost:5000/api/structures/${formData.id}` : (import.meta.env.VITE_API_URL || 'http://localhost:5000') + '/api/structures';
       
       await fetch(url, {
         method,

@@ -18,7 +18,7 @@ const AdminMultimedia = () => {
 
   const fetchItems = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/multimedia');
+      const res = await fetch((import.meta.env.VITE_API_URL || 'http://localhost:5000') + '/api/multimedia');
       const data = await res.json();
       setItems(data);
     } catch (error) {
@@ -36,7 +36,7 @@ const AdminMultimedia = () => {
     e.preventDefault();
     try {
       const method = formData.id ? 'PUT' : 'POST';
-      const url = formData.id ? `http://localhost:5000/api/multimedia/${formData.id}` : 'http://localhost:5000/api/multimedia';
+      const url = formData.id ? `http://localhost:5000/api/multimedia/${formData.id}` : (import.meta.env.VITE_API_URL || 'http://localhost:5000') + '/api/multimedia';
       
       await fetch(url, {
         method,
