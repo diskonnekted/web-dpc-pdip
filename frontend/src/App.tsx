@@ -55,7 +55,7 @@ const PublicLayout = ({ children }: { children: React.ReactNode }) => {
         { name: 'Berita', path: '/kabar' },
         { name: 'Multimedia', path: '/multimedia' },
         { name: 'Layanan KIP/PIP', path: '/layanan-kip-pip' },
-        { name: 'Aspirasi', path: '/aspirasi' },
+        { name: 'Kontak', path: '/kontak' },
       ];
 
   const bottomNavItems = [
@@ -405,6 +405,7 @@ import Gabung from './pages/public/Gabung';
 import Aspirasi from './pages/public/Aspirasi';
 import KabarDetail from './pages/public/KabarDetail';
 import Lambang from './pages/public/Lambang';
+import Kontak from './pages/public/Kontak';
 
 import Dashboard from './pages/admin/Dashboard';
 import AdminBerita from './pages/admin/AdminBerita';
@@ -440,6 +441,7 @@ function App() {
         <Route path="/layanan-kip-pip" element={<PublicLayout><LayananKipPip /></PublicLayout>} />
         <Route path="/gabung" element={<PublicLayout><Gabung /></PublicLayout>} />
         <Route path="/aspirasi" element={<PublicLayout><Aspirasi /></PublicLayout>} />
+        <Route path="/kontak" element={<PublicLayout><Kontak /></PublicLayout>} />
         
         {/* Gen Z Routes */}
         <Route path="/genz" element={<PublicLayout><GenzHome /></PublicLayout>} />
