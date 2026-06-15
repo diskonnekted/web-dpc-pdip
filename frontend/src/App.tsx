@@ -261,7 +261,7 @@ const PublicLayout = ({ children }: { children: React.ReactNode }) => {
               <li><Link to={isYouthMode ? "/genz" : "/"} className="hover:text-brand-red transition-colors flex items-center space-x-2"><span className="text-brand-red">▸</span><span>Beranda</span></Link></li>
               <li><Link to="/profil" className="hover:text-brand-red transition-colors flex items-center space-x-2"><span className="text-brand-red">▸</span><span>Profil Partai</span></Link></li>
               <li><Link to="/kabar" className="hover:text-brand-red transition-colors flex items-center space-x-2"><span className="text-brand-red">▸</span><span>Berita Terbaru</span></Link></li>
-              <li><Link to="/dokumen" className="hover:text-brand-red transition-colors flex items-center space-x-2"><span className="text-brand-red">▸</span><span>AD/ART</span></Link></li>
+              <li><Link to="/profil-ad-art" className="hover:text-brand-red transition-colors flex items-center space-x-2"><span className="text-brand-red">▸</span><span>AD/ART</span></Link></li>
             </ul>
           </div>
 
@@ -431,6 +431,7 @@ function App() {
         <Route path="/kabar" element={<PublicLayout><Kabar /></PublicLayout>} />
         <Route path="/kabar/:slug" element={<PublicLayout><KabarDetail /></PublicLayout>} />
         <Route path="/profil" element={<PublicLayout><Profil /></PublicLayout>} />
+        <Route path="/profil-ad-art" element={<PublicLayout><Profil /></PublicLayout>} />
         <Route path="/multimedia" element={<PublicLayout><Multimedia /></PublicLayout>} />
         <Route path="/layanan-kip-pip" element={<PublicLayout><LayananKipPip /></PublicLayout>} />
         <Route path="/gabung" element={<PublicLayout><Gabung /></PublicLayout>} />
