@@ -241,7 +241,7 @@ const PublicLayout = ({ children }: { children: React.ReactNode }) => {
 
       {/* Varied Footer - Hidden on mobile in Youth/Gen Z Mode */}
       <footer className={`bg-[#111] text-white pt-16 pb-8 border-t-[6px] border-brand-red ${isYouthMode ? 'lg:block hidden' : 'block'}`}>
-        <div className="container mx-auto px-4 md:px-8 grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+        <div className="container mx-auto px-4 md:px-8 grid grid-cols-1 md:grid-cols-5 gap-10 mb-12">
           <div className="md:col-span-2">
             <div className="flex items-center space-x-3 mb-6">
               <img src="/logopdip.png" alt="Logo PDIP" className="w-10 h-10 object-contain drop-shadow-md" />
@@ -277,6 +277,21 @@ const PublicLayout = ({ children }: { children: React.ReactNode }) => {
                 <span>sekretariat@pdip-banjarnegara.id</span>
               </li>
             </ul>
+          </div>
+
+          <div>
+            <h4 className="text-lg font-bold mb-6 text-white uppercase tracking-wider">Peta Lokasi</h4>
+            <div className="w-full h-32 rounded-xl overflow-hidden border border-zinc-800 shadow-md">
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3956.270928923053!2d109.6974866!3d-7.4018903!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e700af5f22e8d35%3A0xc3c50974b6df0ab5!2sDPC%20PDI%20Perjuangan%20Kabupaten%20Banjarnegara!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid" 
+                width="100%" 
+                height="100%" 
+                style={{ border: 0 }} 
+                allowFullScreen={false} 
+                loading="lazy"
+                title="Peta DPC PDIP Banjarnegara"
+              ></iframe>
+            </div>
           </div>
         </div>
         <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-gray-500 text-xs px-4 md:px-8">
