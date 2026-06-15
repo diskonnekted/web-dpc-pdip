@@ -37,11 +37,34 @@ const Home = () => {
       {/* 1. Hero Section */}
       <section className="relative min-h-[90vh] flex items-center justify-start bg-brand-dark text-white pt-20 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/80 to-black/30 z-10"></div>
-        <img 
+        <motion.img 
           src="/3.jpg" 
           alt="Hero Background" 
+          initial={{ scale: 1.02 }}
+          animate={{ scale: 1.12 }}
+          transition={{ duration: 24, repeat: Infinity, repeatType: "reverse", ease: "linear" }}
           className="absolute inset-0 w-full h-full object-cover z-0 opacity-40"
         />
+
+        {/* Floating Animated Orbs in the background */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+          <motion.div 
+            animate={{ 
+              x: [0, 50, -30, 0], 
+              y: [0, -60, 40, 0] 
+            }}
+            transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute top-[20%] left-[10%] w-96 h-96 rounded-full bg-brand-red/15 blur-3xl"
+          />
+          <motion.div 
+            animate={{ 
+              x: [0, -60, 40, 0], 
+              y: [0, 50, -50, 0] 
+            }}
+            transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute bottom-[20%] right-[30%] w-80 h-80 rounded-full bg-brand-gold/10 blur-3xl"
+          />
+        </div>
 
         {/* Absolute positioned Flag on the right side - Fills the hero area (inspired by user layout request) */}
         <div className="absolute right-0 bottom-0 top-0 w-[50%] h-full z-10 pointer-events-none select-none hidden lg:flex items-start justify-end">
@@ -68,10 +91,9 @@ const Home = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="text-5xl md:text-7xl font-black mb-6 leading-tight"
+                className="text-5xl md:text-7xl font-black mb-6 leading-tight text-white"
               >
-                <span className="text-brand-red">BANGKIT BERGERAK</span> <br/>
-                <span className="text-white">BERSAMA RAKYAT</span>
+                BANGKIT BERGERAK <br/>BERSAMA RAKYAT
               </motion.h1>
               <motion.p 
                 initial={{ opacity: 0 }}
