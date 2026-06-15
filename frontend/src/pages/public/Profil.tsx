@@ -304,7 +304,7 @@ const Profil = () => {
             </section>
 
             {/* CTA Konstitusi */}
-            <section className="py-20 text-center bg-gradient-to-r from-brand-red-darkest via-brand-red to-brand-red-dark text-white relative overflow-hidden">
+            <section className="py-20 text-center bg-gradient-pdi text-white relative overflow-hidden">
               <div className="absolute inset-0 bg-black/10 z-0"></div>
               <div className="container mx-auto px-4 md:px-8 relative z-10">
                 <h3 className="text-3xl md:text-5xl font-black mb-4 uppercase">Jadilah Kader yang Taat Konstitusi</h3>

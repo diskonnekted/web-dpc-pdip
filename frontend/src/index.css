@@ -7,10 +7,11 @@
     --bg-color: #ffffff;
     --text-color: #1a1a1a;
     --pdi-darkest: #5A0004;
-    --pdi-dark:    #900101;
-    --pdi-main:    #AC0001;
+    --pdi-dark:    #991419;
+    --pdi-main:    #D41F26;
     --pdi-gold:    #DAAA56;
     --pdi-gold-dk: #BD8B33;
+    --pdi-aqua:    #95D9C0;
   }
   .dark {
     --bg-color: #121212;

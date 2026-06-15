@@ -8,14 +8,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        brand: {
-          red: '#AC0001',
-          'red-dark': '#900101',
-          'red-darkest': '#5A0004',
-          gold: '#DAAA56',
-          'gold-dark': '#BD8B33',
-          dark: '#1a1a1a',
-        }
+        'brand-red': '#D41F26',
+        'brand-red-dark': '#991419',
+        'brand-red-darkest': '#5A0004',
+        'brand-gold': '#DAAA56',
+        'brand-gold-dark': '#BD8B33',
+        'brand-aqua': '#95D9C0',
+        'brand-dark': '#1a1a1a',
       }
     },
   },
