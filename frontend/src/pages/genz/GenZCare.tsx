@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Briefcase, HeartPulse, ShieldCheck, Leaf, X, CheckCircle, ExternalLink, Calendar, MapPin } from 'lucide-react';
 import { useYouthModeStore } from '../../store/youthModeStore';

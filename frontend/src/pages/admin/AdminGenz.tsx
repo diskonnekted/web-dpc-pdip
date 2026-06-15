@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Film, Briefcase, BookOpen, Check, X, Plus, Trash2, Heart } from 'lucide-react';
+import { Film, Briefcase, BookOpen, Check, Plus, Trash2 } from 'lucide-react';
 
 export default function AdminGenz() {
   const [activeTab, setActiveTab] = useState<'feed' | 'care' | 'academy'>('feed');

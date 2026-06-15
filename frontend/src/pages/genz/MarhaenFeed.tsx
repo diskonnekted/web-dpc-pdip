@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Heart, MessageCircle, Share2, Music, ChevronUp, ChevronDown, Send, X } from 'lucide-react';
 import { useYouthModeStore } from '../../store/youthModeStore';

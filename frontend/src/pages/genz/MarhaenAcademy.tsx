@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { BookOpen, CheckCircle, Lock, X, Check, AlertCircle } from 'lucide-react';
 import { useYouthModeStore } from '../../store/youthModeStore';

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useYouthModeStore } from '../../store/youthModeStore';
-import { LogIn, UserPlus, LogOut, Shield, Award, MapPin } from 'lucide-react';
+import { LogIn, UserPlus, LogOut, Award, MapPin } from 'lucide-react';
 
 export default function GenzProfile() {
   const { xp, level, isYouthMode } = useYouthModeStore();
