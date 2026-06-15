@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Calendar, Users, Shield, Map, FileText, ArrowRight, CheckCircle2, Plus } from 'lucide-react';
+import { Calendar, ArrowRight, CheckCircle2, Plus } from 'lucide-react';
 
 const Home = () => {
   // Simple countdown logic for the Event section
@@ -73,7 +73,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* 2. Overlapping Feature Cards */}
+      {/* 2. Overlapping Feature Cards (Hidden as requested)
       <section className="relative z-30 -mt-20 px-4 md:px-8">
         <div className="container mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -99,6 +99,7 @@ const Home = () => {
           </div>
         </div>
       </section>
+      */}
 
       {/* 3. About Us Section */}
       <section className="py-24 bg-white">
