@@ -6,6 +6,11 @@
   :root {
     --bg-color: #ffffff;
     --text-color: #1a1a1a;
+    --pdi-darkest: #5A0004;
+    --pdi-dark:    #900101;
+    --pdi-main:    #AC0001;
+    --pdi-gold:    #DAAA56;
+    --pdi-gold-dk: #BD8B33;
   }
   .dark {
     --bg-color: #121212;
@@ -23,5 +28,14 @@
   }
   .text-shadow {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+  .bg-gradient-pdi {
+    background: linear-gradient(135deg, var(--pdi-darkest) 0%, var(--pdi-main) 100%);
+  }
+  .bg-gradient-gold {
+    background: linear-gradient(135deg, var(--pdi-gold) 0%, var(--pdi-gold-dk) 100%);
+  }
+  .text-gold {
+    color: var(--pdi-gold);
   }
 }
