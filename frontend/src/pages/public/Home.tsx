@@ -44,7 +44,7 @@ const Home = () => {
         />
 
         {/* Absolute positioned Flag on the right side - Fills the hero area (inspired by user layout request) */}
-        <div className="absolute right-0 bottom-0 top-20 w-[45%] h-[calc(100vh-5rem)] z-10 pointer-events-none select-none hidden lg:flex items-end justify-end">
+        <div className="absolute right-0 bottom-0 top-0 w-[50%] h-full z-10 pointer-events-none select-none hidden lg:flex items-start justify-end">
           <motion.div
             initial={{ opacity: 0, scale: 0.8, x: 50 }}
             animate={{ opacity: 1, scale: 1, x: 0 }}
@@ -55,7 +55,7 @@ const Home = () => {
             <img 
               src="/bendera.png" 
               alt="Bendera PDI Perjuangan" 
-              className="w-full h-full object-contain object-right-bottom drop-shadow-[0_20px_50px_rgba(172,0,1,0.5)] scale-125 origin-bottom-right"
+              className="w-full h-full object-contain object-right-top drop-shadow-[0_20px_50px_rgba(172,0,1,0.5)] lg:scale-150 origin-top-right transform transition duration-500"
             />
           </motion.div>
         </div>
