@@ -5,13 +5,15 @@ import Home from './pages/public/Home';
 import Kabar from './pages/public/Kabar';
 
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, LayoutDashboard, FileText, Users, Settings, LogOut } from 'lucide-react';
+import { Menu, X, LayoutDashboard, FileText, Users, Settings, LogOut, Zap } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { useYouthModeStore } from './store/youthModeStore';
 
 // Modern Public Layout
 const PublicLayout = ({ children }: { children: React.ReactNode }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { isYouthMode, toggleYouthMode } = useYouthModeStore();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,7 +33,7 @@ const PublicLayout = ({ children }: { children: React.ReactNode }) => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col font-sans">
+    <div className={`min-h-screen flex flex-col font-sans transition-colors duration-500 ${isYouthMode ? 'bg-zinc-950 text-white' : 'bg-gray-50 text-brand-dark'}`}>
       {/* Top Bar - Varied Element */}
       <div className={`bg-brand-dark text-white text-xs py-2 transition-all duration-300 ${scrolled ? 'hidden' : 'block'}`}>
         <div className="container mx-auto px-4 md:px-8 flex justify-between items-center">
@@ -50,7 +52,9 @@ const PublicLayout = ({ children }: { children: React.ReactNode }) => {
       {/* Main Header */}
       <header 
         className={`sticky top-0 w-full z-50 transition-all duration-300 ${
-          scrolled ? 'bg-white shadow-lg py-2' : 'bg-white/95 backdrop-blur-md shadow-md py-4'
+          scrolled 
+            ? isYouthMode ? 'bg-zinc-900/90 shadow-lg py-2 border-b border-brand-red/30 backdrop-blur-xl' : 'bg-white shadow-lg py-2' 
+            : isYouthMode ? 'bg-zinc-950/80 backdrop-blur-xl shadow-md py-4 border-b border-white/5' : 'bg-white/95 backdrop-blur-md shadow-md py-4'
         }`}
       >
         <div className="container mx-auto px-4 md:px-8 flex justify-between items-center">
@@ -61,7 +65,7 @@ const PublicLayout = ({ children }: { children: React.ReactNode }) => {
           >
             <img src="/logopdip.png" alt="Logo PDIP" className="w-12 h-12 object-contain drop-shadow-md" />
             <div className="flex flex-col">
-              <span className="font-bold text-xl md:text-2xl tracking-tighter text-brand-dark uppercase leading-tight">PDI Perjuangan</span>
+              <span className={`font-bold text-xl md:text-2xl tracking-tighter uppercase leading-tight ${isYouthMode ? 'text-white' : 'text-brand-dark'}`}>PDI Perjuangan</span>
               <span className="text-xs text-brand-red font-semibold tracking-wider uppercase">DPC Banjarnegara</span>
             </div>
           </motion.a>
@@ -72,13 +76,28 @@ const PublicLayout = ({ children }: { children: React.ReactNode }) => {
               <a 
                 key={link.name}
                 href={link.path}
-                className="font-bold text-sm uppercase tracking-wide text-brand-dark hover:text-brand-red hover:bg-gray-100 px-4 py-2 rounded-md transition-all"
+                className={`font-bold text-sm uppercase tracking-wide px-4 py-2 rounded-md transition-all ${
+                  isYouthMode 
+                    ? 'text-gray-300 hover:text-white hover:bg-white/10' 
+                    : 'text-brand-dark hover:text-brand-red hover:bg-gray-100'
+                }`}
               >
                 {link.name}
               </a>
             ))}
-            <div className="ml-4 pl-4 border-l border-gray-200">
-              <a href="/gabung" className="bg-brand-red hover:bg-red-800 text-white px-5 py-2 rounded-sm font-bold text-sm uppercase tracking-wide transition-colors shadow-md shadow-red-500/20">
+            
+            {/* Youth Mode Toggle */}
+            <button 
+              onClick={toggleYouthMode}
+              className={`ml-2 p-2 rounded-full transition-all ${isYouthMode ? 'bg-brand-red/20 text-brand-red shadow-[0_0_15px_rgba(204,0,0,0.5)]' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`}
+              title="Toggle Youth Mode"
+            >
+              <Zap size={18} className={isYouthMode ? "fill-brand-red" : ""} />
+            </button>
+            <div className="ml-4 pl-4 border-l border-gray-200 dark:border-gray-700">
+              <a href="/gabung" className={`px-5 py-2 rounded-sm font-bold text-sm uppercase tracking-wide transition-colors shadow-md ${
+                isYouthMode ? 'bg-brand-red text-white hover:bg-red-700 shadow-red-500/50' : 'bg-brand-red text-white hover:bg-red-800 shadow-red-500/20'
+              }`}>
                 Gabung Kader
               </a>
             </div>
@@ -86,7 +105,7 @@ const PublicLayout = ({ children }: { children: React.ReactNode }) => {
 
           {/* Mobile Menu Toggle */}
           <button 
-            className="lg:hidden text-brand-dark p-2"
+            className={`lg:hidden p-2 ${isYouthMode ? 'text-white' : 'text-brand-dark'}`}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
@@ -100,14 +119,29 @@ const PublicLayout = ({ children }: { children: React.ReactNode }) => {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="lg:hidden bg-white border-t border-gray-100 shadow-xl overflow-hidden absolute w-full"
+              className={`lg:hidden border-t overflow-hidden absolute w-full ${
+                isYouthMode ? 'bg-zinc-900 border-zinc-800 shadow-[0_10px_30px_rgba(204,0,0,0.1)]' : 'bg-white border-gray-100 shadow-xl'
+              }`}
             >
               <div className="flex flex-col p-4 space-y-2">
+                <button 
+                  onClick={toggleYouthMode}
+                  className={`flex items-center justify-center space-x-2 w-full p-3 rounded-lg font-bold ${
+                    isYouthMode ? 'bg-brand-red/20 text-brand-red border border-brand-red/30' : 'bg-gray-100 text-gray-700'
+                  }`}
+                >
+                  <Zap size={18} className={isYouthMode ? "fill-brand-red" : ""} />
+                  <span>{isYouthMode ? 'Matikan Youth Mode' : 'Aktifkan Youth Mode'}</span>
+                </button>
                 {navLinks.map((link) => (
                   <a 
                     key={link.name} 
                     href={link.path}
-                    className="text-brand-dark font-bold text-lg py-3 px-4 border-b border-gray-100 hover:text-brand-red hover:bg-gray-50 transition-colors"
+                    className={`font-bold text-lg py-3 px-4 border-b transition-colors ${
+                      isYouthMode 
+                        ? 'text-gray-200 border-zinc-800 hover:text-brand-red hover:bg-zinc-800' 
+                        : 'text-brand-dark border-gray-100 hover:text-brand-red hover:bg-gray-50'
+                    }`}
                   >
                     {link.name}
                   </a>
@@ -285,6 +319,12 @@ import AdminPengaturan from './pages/admin/AdminPengaturan';
 import AdminMultimedia from './pages/admin/AdminMultimedia';
 import Login from './pages/admin/Login';
 
+// Gen Z Pages
+import GenzHome from './pages/genz/GenzHome';
+import MarhaenFeed from './pages/genz/MarhaenFeed';
+import GenZCare from './pages/genz/GenZCare';
+import MarhaenAcademy from './pages/genz/MarhaenAcademy';
+
 function App() {
   return (
     <Router>
@@ -299,6 +339,12 @@ function App() {
         <Route path="/gabung" element={<PublicLayout><Gabung /></PublicLayout>} />
         <Route path="/aspirasi" element={<PublicLayout><Aspirasi /></PublicLayout>} />
         
+        {/* Gen Z Routes */}
+        <Route path="/genz" element={<PublicLayout><GenzHome /></PublicLayout>} />
+        <Route path="/genz/feed" element={<PublicLayout><MarhaenFeed /></PublicLayout>} />
+        <Route path="/genz/care" element={<PublicLayout><GenZCare /></PublicLayout>} />
+        <Route path="/genz/academy" element={<PublicLayout><MarhaenAcademy /></PublicLayout>} />
+
         {/* Admin Login */}
         <Route path="/login" element={<Login />} />
 
