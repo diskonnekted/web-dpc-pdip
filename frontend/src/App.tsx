@@ -260,6 +260,7 @@ const PublicLayout = ({ children }: { children: React.ReactNode }) => {
             <ul className="space-y-3 text-gray-400 text-sm font-medium">
               <li><Link to={isYouthMode ? "/genz" : "/"} className="hover:text-brand-red transition-colors flex items-center space-x-2"><span className="text-brand-red">▸</span><span>Beranda</span></Link></li>
               <li><Link to="/profil" className="hover:text-brand-red transition-colors flex items-center space-x-2"><span className="text-brand-red">▸</span><span>Profil Partai</span></Link></li>
+              <li><Link to="/profil-lambang" className="hover:text-brand-red transition-colors flex items-center space-x-2"><span className="text-brand-red">▸</span><span>Lambang & Bendera</span></Link></li>
               <li><Link to="/kabar" className="hover:text-brand-red transition-colors flex items-center space-x-2"><span className="text-brand-red">▸</span><span>Berita Terbaru</span></Link></li>
               <li><Link to="/profil-ad-art" className="hover:text-brand-red transition-colors flex items-center space-x-2"><span className="text-brand-red">▸</span><span>AD/ART</span></Link></li>
             </ul>
@@ -403,6 +404,7 @@ import LayananKipPip from './pages/public/LayananKipPip';
 import Gabung from './pages/public/Gabung';
 import Aspirasi from './pages/public/Aspirasi';
 import KabarDetail from './pages/public/KabarDetail';
+import Lambang from './pages/public/Lambang';
 
 import Dashboard from './pages/admin/Dashboard';
 import AdminBerita from './pages/admin/AdminBerita';
@@ -432,6 +434,8 @@ function App() {
         <Route path="/kabar/:slug" element={<PublicLayout><KabarDetail /></PublicLayout>} />
         <Route path="/profil" element={<PublicLayout><Profil /></PublicLayout>} />
         <Route path="/profil-ad-art" element={<PublicLayout><Profil /></PublicLayout>} />
+        <Route path="/profil-lambang" element={<PublicLayout><Lambang /></PublicLayout>} />
+        <Route path="/lambang" element={<PublicLayout><Lambang /></PublicLayout>} />
         <Route path="/multimedia" element={<PublicLayout><Multimedia /></PublicLayout>} />
         <Route path="/layanan-kip-pip" element={<PublicLayout><LayananKipPip /></PublicLayout>} />
         <Route path="/gabung" element={<PublicLayout><Gabung /></PublicLayout>} />

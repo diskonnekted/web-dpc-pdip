@@ -81,6 +81,13 @@ const Profil = () => {
               <Scale size={16} />
               <span>Konstitusi AD / ART</span>
             </button>
+            <Link 
+              to="/profil-lambang"
+              className="py-4 px-6 font-bold text-sm uppercase tracking-wider border-b-2 border-transparent text-gray-500 hover:text-brand-red transition-all flex items-center space-x-2"
+            >
+              <Shield size={16} />
+              <span>Lambang & Bendera</span>
+            </Link>
           </div>
         </div>
       </div>
