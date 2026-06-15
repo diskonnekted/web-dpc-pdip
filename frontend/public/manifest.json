@@ -1,0 +1,21 @@
+{
+  "short_name": "Marhaen Muda",
+  "name": "Marhaen Muda - PDIP Banjarnegara",
+  "icons": [
+    {
+      "src": "/avatar_windy.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/logopdip.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/genz",
+  "background_color": "#09090b",
+  "theme_color": "#cc0000",
+  "display": "standalone",
+  "orientation": "portrait"
+}

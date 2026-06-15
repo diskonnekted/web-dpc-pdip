@@ -1,11 +1,11 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate, useLocation, Link } from 'react-router-dom';
 import React from 'react';
 
 import Home from './pages/public/Home';
 import Kabar from './pages/public/Kabar';
 
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, LayoutDashboard, FileText, Users, Settings, LogOut, Zap } from 'lucide-react';
+import { Menu, X, LayoutDashboard, FileText, Users, Settings, LogOut, Zap, Home as HomeIcon, PlayCircle, HeartHandshake, BookOpen, User } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useYouthModeStore } from './store/youthModeStore';
 
@@ -13,7 +13,9 @@ import { useYouthModeStore } from './store/youthModeStore';
 const PublicLayout = ({ children }: { children: React.ReactNode }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { isYouthMode, toggleYouthMode } = useYouthModeStore();
+  const { isYouthMode, setYouthMode } = useYouthModeStore();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,19 +25,51 @@ const PublicLayout = ({ children }: { children: React.ReactNode }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = [
-    { name: 'Beranda', path: '/' },
-    { name: 'Profil', path: '/profil' },
-    { name: 'Berita', path: '/kabar' },
-    { name: 'Multimedia', path: '/multimedia' },
-    { name: 'Layanan KIP/PIP', path: '/layanan-kip-pip' },
-    { name: 'Aspirasi', path: '/aspirasi' },
+  useEffect(() => {
+    const isGenzPath = location.pathname.startsWith('/genz');
+    if (isGenzPath && !isYouthMode) {
+      setYouthMode(true);
+    } else if (!isGenzPath && isYouthMode) {
+      setYouthMode(false);
+    }
+  }, [location.pathname]);
+
+  const handleToggleYouthMode = () => {
+    if (isYouthMode) {
+      navigate('/');
+    } else {
+      navigate('/genz');
+    }
+  };
+
+  const navLinks = isYouthMode 
+    ? [
+        { name: 'Gen Z Home', path: '/genz' },
+        { name: 'Marhaen Feed', path: '/genz/feed' },
+        { name: 'Gen Z Care', path: '/genz/care' },
+        { name: 'Marhaen Academy', path: '/genz/academy' },
+      ]
+    : [
+        { name: 'Beranda', path: '/' },
+        { name: 'Profil', path: '/profil' },
+        { name: 'Berita', path: '/kabar' },
+        { name: 'Multimedia', path: '/multimedia' },
+        { name: 'Layanan KIP/PIP', path: '/layanan-kip-pip' },
+        { name: 'Aspirasi', path: '/aspirasi' },
+      ];
+
+  const bottomNavItems = [
+    { name: 'Home', path: '/genz', icon: <HomeIcon size={20} /> },
+    { name: 'Feed', path: '/genz/feed', icon: <PlayCircle size={20} /> },
+    { name: 'Care', path: '/genz/care', icon: <HeartHandshake size={20} /> },
+    { name: 'Academy', path: '/genz/academy', icon: <BookOpen size={20} /> },
+    { name: 'Profile', path: '/genz/profile', icon: <User size={20} /> },
   ];
 
   return (
-    <div className={`min-h-screen flex flex-col font-sans transition-colors duration-500 ${isYouthMode ? 'bg-zinc-950 text-white' : 'bg-gray-50 text-brand-dark'}`}>
-      {/* Top Bar - Varied Element */}
-      <div className={`bg-brand-dark text-white text-xs py-2 transition-all duration-300 ${scrolled ? 'hidden' : 'block'}`}>
+    <div className={`min-h-screen flex flex-col font-sans transition-colors duration-500 ${isYouthMode ? 'bg-zinc-950 text-white' : 'bg-gray-50 text-brand-dark'} ${isYouthMode ? 'pb-20 lg:pb-0' : ''}`}>
+      {/* Top Bar - Classic/Desktop only */}
+      <div className={`bg-brand-dark text-white text-xs py-2 transition-all duration-300 ${scrolled ? 'hidden' : 'block'} ${isYouthMode ? 'lg:block hidden' : 'block'}`}>
         <div className="container mx-auto px-4 md:px-8 flex justify-between items-center">
           <div className="flex space-x-4">
             <span className="flex items-center"><FileText size={14} className="mr-1 text-brand-red"/> Solid Bergerak</span>
@@ -55,27 +89,27 @@ const PublicLayout = ({ children }: { children: React.ReactNode }) => {
           scrolled 
             ? isYouthMode ? 'bg-zinc-900/90 shadow-lg py-2 border-b border-brand-red/30 backdrop-blur-xl' : 'bg-white shadow-lg py-2' 
             : isYouthMode ? 'bg-zinc-950/80 backdrop-blur-xl shadow-md py-4 border-b border-white/5' : 'bg-white/95 backdrop-blur-md shadow-md py-4'
-        }`}
+        } ${isYouthMode ? 'lg:block hidden' : 'block'}`}
       >
         <div className="container mx-auto px-4 md:px-8 flex justify-between items-center">
           {/* Logo Area */}
-          <motion.a 
-            href="/"
-            className="flex items-center space-x-3 group"
+          <motion.div 
+            onClick={() => navigate(isYouthMode ? '/genz' : '/')}
+            className="flex items-center space-x-3 group cursor-pointer"
           >
             <img src="/logopdip.png" alt="Logo PDIP" className="w-12 h-12 object-contain drop-shadow-md" />
             <div className="flex flex-col">
               <span className={`font-bold text-xl md:text-2xl tracking-tighter uppercase leading-tight ${isYouthMode ? 'text-white' : 'text-brand-dark'}`}>PDI Perjuangan</span>
               <span className="text-xs text-brand-red font-semibold tracking-wider uppercase">DPC Banjarnegara</span>
             </div>
-          </motion.a>
+          </motion.div>
 
           {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center space-x-1">
             {navLinks.map((link) => (
-              <a 
+              <Link 
                 key={link.name}
-                href={link.path}
+                to={link.path}
                 className={`font-bold text-sm uppercase tracking-wide px-4 py-2 rounded-md transition-all ${
                   isYouthMode 
                     ? 'text-gray-300 hover:text-white hover:bg-white/10' 
@@ -83,23 +117,23 @@ const PublicLayout = ({ children }: { children: React.ReactNode }) => {
                 }`}
               >
                 {link.name}
-              </a>
+              </Link>
             ))}
             
             {/* Youth Mode Toggle */}
             <button 
-              onClick={toggleYouthMode}
+              onClick={handleToggleYouthMode}
               className={`ml-2 p-2 rounded-full transition-all ${isYouthMode ? 'bg-brand-red/20 text-brand-red shadow-[0_0_15px_rgba(204,0,0,0.5)]' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`}
               title="Toggle Youth Mode"
             >
               <Zap size={18} className={isYouthMode ? "fill-brand-red" : ""} />
             </button>
             <div className="ml-4 pl-4 border-l border-gray-200 dark:border-gray-700">
-              <a href="/gabung" className={`px-5 py-2 rounded-sm font-bold text-sm uppercase tracking-wide transition-colors shadow-md ${
+              <Link to="/gabung" className={`px-5 py-2 rounded-sm font-bold text-sm uppercase tracking-wide transition-colors shadow-md ${
                 isYouthMode ? 'bg-brand-red text-white hover:bg-red-700 shadow-red-500/50' : 'bg-brand-red text-white hover:bg-red-800 shadow-red-500/20'
               }`}>
                 Gabung Kader
-              </a>
+              </Link>
             </div>
           </nav>
 
@@ -125,7 +159,7 @@ const PublicLayout = ({ children }: { children: React.ReactNode }) => {
             >
               <div className="flex flex-col p-4 space-y-2">
                 <button 
-                  onClick={toggleYouthMode}
+                  onClick={handleToggleYouthMode}
                   className={`flex items-center justify-center space-x-2 w-full p-3 rounded-lg font-bold ${
                     isYouthMode ? 'bg-brand-red/20 text-brand-red border border-brand-red/30' : 'bg-gray-100 text-gray-700'
                   }`}
@@ -134,9 +168,10 @@ const PublicLayout = ({ children }: { children: React.ReactNode }) => {
                   <span>{isYouthMode ? 'Matikan Youth Mode' : 'Aktifkan Youth Mode'}</span>
                 </button>
                 {navLinks.map((link) => (
-                  <a 
+                  <Link 
                     key={link.name} 
-                    href={link.path}
+                    to={link.path}
+                    onClick={() => setMobileMenuOpen(false)}
                     className={`font-bold text-lg py-3 px-4 border-b transition-colors ${
                       isYouthMode 
                         ? 'text-gray-200 border-zinc-800 hover:text-brand-red hover:bg-zinc-800' 
@@ -144,24 +179,68 @@ const PublicLayout = ({ children }: { children: React.ReactNode }) => {
                     }`}
                   >
                     {link.name}
-                  </a>
+                  </Link>
                 ))}
-                <a href="/gabung" className="mt-4 bg-brand-red text-center text-white px-5 py-3 rounded-sm font-bold text-lg uppercase tracking-wide">
+                <Link 
+                  to="/gabung" 
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="mt-4 bg-brand-red text-center text-white px-5 py-3 rounded-sm font-bold text-lg uppercase tracking-wide"
+                >
                   Gabung Kader
-                </a>
+                </Link>
               </div>
             </motion.div>
           )}
         </AnimatePresence>
       </header>
 
+      {/* Sleek Mobile Header ONLY in Gen Z Mode */}
+      {isYouthMode && (
+        <header className="lg:hidden sticky top-0 z-50 bg-zinc-950/80 backdrop-blur-xl border-b border-zinc-900 px-4 py-3 flex justify-between items-center">
+          <div className="flex items-center space-x-2">
+            <img src="/logopdip.png" alt="Logo PDIP" className="w-8 h-8 object-contain" />
+            <span className="font-extrabold text-sm uppercase tracking-tight text-white">Marhaen Muda</span>
+          </div>
+          <button 
+            onClick={handleToggleYouthMode}
+            className="flex items-center gap-1.5 px-3 py-1 bg-zinc-850 hover:bg-zinc-850/50 border border-zinc-800 rounded-full text-[10px] font-bold text-gray-300 transition-all"
+          >
+            <Zap size={12} className="text-brand-red fill-brand-red" />
+            Mode Klasik
+          </button>
+        </header>
+      )}
+
       {/* Main Content Area */}
       <main className="flex-grow">
         {children}
       </main>
 
-      {/* Varied Footer */}
-      <footer className="bg-[#111] text-white pt-16 pb-8 border-t-[6px] border-brand-red">
+      {/* Mobile Bottom Navigation Bar (ONLY in Gen Z Mode on Mobile) */}
+      {isYouthMode && (
+        <nav className="lg:hidden fixed bottom-0 inset-x-0 z-50 bg-zinc-900/95 backdrop-blur-xl border-t border-zinc-850 shadow-2xl flex justify-around py-2 px-2 pb-safe-bottom">
+          {bottomNavItems.map((item) => {
+            const isActive = location.pathname === item.path;
+            return (
+              <Link 
+                key={item.name}
+                to={item.path}
+                className={`flex flex-col items-center justify-center flex-1 py-1 transition-all ${
+                  isActive ? 'text-brand-red' : 'text-gray-400 hover:text-gray-250'
+                }`}
+              >
+                <div className={`p-1.5 rounded-full transition-all ${isActive ? 'bg-brand-red/10 scale-110 shadow-[0_0_15px_rgba(204,0,0,0.25)]' : ''}`}>
+                  {item.icon}
+                </div>
+                <span className="text-[10px] font-bold mt-0.5 tracking-wide">{item.name}</span>
+              </Link>
+            );
+          })}
+        </nav>
+      )}
+
+      {/* Varied Footer - Hidden on mobile in Youth/Gen Z Mode */}
+      <footer className={`bg-[#111] text-white pt-16 pb-8 border-t-[6px] border-brand-red ${isYouthMode ? 'lg:block hidden' : 'block'}`}>
         <div className="container mx-auto px-4 md:px-8 grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
           <div className="md:col-span-2">
             <div className="flex items-center space-x-3 mb-6">
@@ -179,10 +258,10 @@ const PublicLayout = ({ children }: { children: React.ReactNode }) => {
           <div>
             <h4 className="text-lg font-bold mb-6 text-white uppercase tracking-wider">Navigasi</h4>
             <ul className="space-y-3 text-gray-400 text-sm font-medium">
-              <li><a href="/" className="hover:text-brand-red transition-colors flex items-center space-x-2"><span className="text-brand-red">▸</span><span>Beranda</span></a></li>
-              <li><a href="/profil" className="hover:text-brand-red transition-colors flex items-center space-x-2"><span className="text-brand-red">▸</span><span>Profil Partai</span></a></li>
-              <li><a href="/kabar" className="hover:text-brand-red transition-colors flex items-center space-x-2"><span className="text-brand-red">▸</span><span>Berita Terbaru</span></a></li>
-              <li><a href="/dokumen" className="hover:text-brand-red transition-colors flex items-center space-x-2"><span className="text-brand-red">▸</span><span>AD/ART</span></a></li>
+              <li><Link to={isYouthMode ? "/genz" : "/"} className="hover:text-brand-red transition-colors flex items-center space-x-2"><span className="text-brand-red">▸</span><span>Beranda</span></Link></li>
+              <li><Link to="/profil" className="hover:text-brand-red transition-colors flex items-center space-x-2"><span className="text-brand-red">▸</span><span>Profil Partai</span></Link></li>
+              <li><Link to="/kabar" className="hover:text-brand-red transition-colors flex items-center space-x-2"><span className="text-brand-red">▸</span><span>Berita Terbaru</span></Link></li>
+              <li><Link to="/dokumen" className="hover:text-brand-red transition-colors flex items-center space-x-2"><span className="text-brand-red">▸</span><span>AD/ART</span></Link></li>
             </ul>
           </div>
 
@@ -228,6 +307,7 @@ const AdminLayout = ({ children }: { children: React.ReactNode }) => {
   };
   const adminLinks = [
     { name: 'Dashboard', path: '/admin', icon: <LayoutDashboard size={20} /> },
+    { name: 'Kelola Gen Z', path: '/admin/genz', icon: <Zap size={20} /> },
     { name: 'Pendaftar KIP/PIP', path: '/admin/kip-pip', icon: <Users size={20} /> },
     { name: 'Galeri Multimedia', path: '/admin/multimedia', icon: <Users size={20} /> },
     { name: 'Pendaftaran Anggota', path: '/admin/gabung', icon: <Users size={20} /> },
@@ -318,12 +398,14 @@ import AdminStruktur from './pages/admin/AdminStruktur';
 import AdminPengaturan from './pages/admin/AdminPengaturan';
 import AdminMultimedia from './pages/admin/AdminMultimedia';
 import Login from './pages/admin/Login';
+import AdminGenz from './pages/admin/AdminGenz';
 
 // Gen Z Pages
 import GenzHome from './pages/genz/GenzHome';
 import MarhaenFeed from './pages/genz/MarhaenFeed';
 import GenZCare from './pages/genz/GenZCare';
 import MarhaenAcademy from './pages/genz/MarhaenAcademy';
+import GenzProfile from './pages/genz/GenzProfile';
 
 function App() {
   return (
@@ -344,12 +426,14 @@ function App() {
         <Route path="/genz/feed" element={<PublicLayout><MarhaenFeed /></PublicLayout>} />
         <Route path="/genz/care" element={<PublicLayout><GenZCare /></PublicLayout>} />
         <Route path="/genz/academy" element={<PublicLayout><MarhaenAcademy /></PublicLayout>} />
+        <Route path="/genz/profile" element={<PublicLayout><GenzProfile /></PublicLayout>} />
 
         {/* Admin Login */}
         <Route path="/login" element={<Login />} />
 
         {/* Admin Routes */}
         <Route path="/admin" element={<AdminLayout><Dashboard /></AdminLayout>} />
+        <Route path="/admin/genz" element={<AdminLayout><AdminGenz /></AdminLayout>} />
         <Route path="/admin/berita" element={<AdminLayout><AdminBerita /></AdminLayout>} />
         <Route path="/admin/multimedia" element={<AdminLayout><AdminMultimedia /></AdminLayout>} />
         <Route path="/admin/kip-pip" element={<AdminLayout><AdminKipPip /></AdminLayout>} />
