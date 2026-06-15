@@ -38,7 +38,7 @@ const Home = () => {
       <section className="relative min-h-[90vh] flex items-center justify-start bg-brand-dark text-white pt-20 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/80 to-black/30 z-10"></div>
         <motion.img 
-          src="/3.jpg" 
+          src="/hero.jpg" 
           alt="Hero Background" 
           initial={{ scale: 1.02 }}
           animate={{ scale: 1.12 }}
