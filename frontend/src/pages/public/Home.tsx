@@ -35,41 +35,61 @@ const Home = () => {
   return (
     <div className="bg-white">
       {/* 1. Hero Section */}
-      <section className="relative h-[90vh] flex items-center justify-start bg-brand-dark text-white pt-20">
-        <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-transparent z-10"></div>
+      <section className="relative min-h-[90vh] flex items-center justify-start bg-brand-dark text-white pt-20">
+        <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/80 to-black/40 z-10"></div>
         <img 
           src="/3.jpg" 
           alt="Hero Background" 
-          className="absolute inset-0 w-full h-full object-cover z-0 opacity-50"
+          className="absolute inset-0 w-full h-full object-cover z-0 opacity-40"
         />
 
-        <div className="container mx-auto px-4 md:px-8 relative z-20">
-          <div className="max-w-3xl">
-            <motion.h1 
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="text-5xl md:text-7xl font-black mb-6 leading-tight"
-            >
-              BANGKIT BERGERAK <br/><span className="text-brand-red">BERSAMA RAKYAT</span>
-            </motion.h1>
-            <motion.p 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 0.3 }}
-              className="text-lg md:text-2xl text-gray-200 mb-10 font-light max-w-2xl"
-            >
-              Kota yang penuh semangat, ambil kesempatan Anda untuk maju bersama kami mewujudkan keadilan sosial.
-            </motion.p>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
-            >
-              <a href="/gabung" className="bg-brand-red hover:bg-red-800 text-white font-bold py-4 px-8 text-lg rounded-sm transition-colors inline-flex items-center">
-                Gabung Kampanye <ArrowRight className="ml-2" size={20} />
-              </a>
-            </motion.div>
+        <div className="container mx-auto px-4 md:px-8 relative z-20 w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            {/* Left Column: Text Content */}
+            <div className="lg:col-span-7 max-w-3xl">
+              <motion.h1 
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                className="text-5xl md:text-7xl font-black mb-6 leading-tight"
+              >
+                BANGKIT BERGERAK <br/><span className="text-brand-red">BERSAMA RAKYAT</span>
+              </motion.h1>
+              <motion.p 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1, delay: 0.3 }}
+                className="text-lg md:text-2xl text-gray-200 mb-10 font-light max-w-2xl"
+              >
+                Kota yang penuh semangat, ambil kesempatan Anda untuk maju bersama kami mewujudkan keadilan sosial.
+              </motion.p>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.6 }}
+              >
+                <a href="/gabung" className="bg-brand-red hover:bg-red-800 text-white font-bold py-4 px-8 text-lg rounded-sm transition-colors inline-flex items-center">
+                  Gabung Kampanye <ArrowRight className="ml-2" size={20} />
+                </a>
+              </motion.div>
+            </div>
+
+            {/* Right Column: bendera.png */}
+            <div className="lg:col-span-5 flex justify-center lg:justify-end">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9, rotate: -2 }}
+                animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                transition={{ duration: 1, delay: 0.4 }}
+                className="relative max-w-md w-full"
+              >
+                <div className="absolute -inset-1 bg-gradient-to-tr from-brand-red to-brand-gold rounded-2xl blur-xl opacity-20"></div>
+                <img 
+                  src="/bendera.png" 
+                  alt="Bendera PDI Perjuangan" 
+                  className="relative z-10 w-full h-auto drop-shadow-[0_20px_50px_rgba(172,0,1,0.3)] object-contain"
+                />
+              </motion.div>
+            </div>
           </div>
         </div>
       </section>
