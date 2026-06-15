@@ -70,7 +70,8 @@ const Home = () => {
                 transition={{ duration: 0.8 }}
                 className="text-5xl md:text-7xl font-black mb-6 leading-tight"
               >
-                BANGKIT BERGERAK <br/><span className="text-brand-red">BERSAMA RAKYAT</span>
+                <span className="text-brand-red">BANGKIT BERGERAK</span> <br/>
+                <span className="text-white">BERSAMA RAKYAT</span>
               </motion.h1>
               <motion.p 
                 initial={{ opacity: 0 }}
