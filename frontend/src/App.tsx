@@ -283,7 +283,7 @@ const PublicLayout = ({ children }: { children: React.ReactNode }) => {
             <h4 className="text-lg font-bold mb-6 text-white uppercase tracking-wider">Peta Lokasi</h4>
             <div className="w-full h-32 rounded-xl overflow-hidden border border-zinc-800 shadow-md">
               <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3956.270928923053!2d109.6974866!3d-7.4018903!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e700af5f22e8d35%3A0xc3c50974b6df0ab5!2sDPC%20PDI%20Perjuangan%20Kabupaten%20Banjarnegara!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid" 
+                src="https://maps.google.com/maps?q=-7.3909213069062,109.70636000185057&t=&z=17&ie=UTF8&iwloc=&output=embed" 
                 width="100%" 
                 height="100%" 
                 style={{ border: 0 }} 
