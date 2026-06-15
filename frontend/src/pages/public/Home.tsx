@@ -75,18 +75,18 @@ const Home = () => {
             </div>
 
             {/* Right Column: bendera.png */}
-            <div className="lg:col-span-5 flex justify-center lg:justify-end">
+            <div className="lg:col-span-5 flex justify-center lg:justify-end h-full">
               <motion.div
-                initial={{ opacity: 0, scale: 0.9, rotate: -2 }}
-                animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 1, delay: 0.4 }}
-                className="relative max-w-md w-full"
+                className="relative w-full flex justify-center lg:justify-end items-center"
               >
-                <div className="absolute -inset-1 bg-gradient-to-tr from-brand-red to-brand-gold rounded-2xl blur-xl opacity-20"></div>
+                <div className="absolute -inset-10 bg-gradient-to-tr from-brand-red to-brand-gold rounded-full blur-3xl opacity-15"></div>
                 <img 
                   src="/bendera.png" 
                   alt="Bendera PDI Perjuangan" 
-                  className="relative z-10 w-full h-auto drop-shadow-[0_20px_50px_rgba(172,0,1,0.3)] object-contain"
+                  className="relative z-10 w-full h-[65vh] lg:h-[75vh] object-contain drop-shadow-[0_20px_50px_rgba(172,0,1,0.4)] lg:scale-135 lg:translate-x-12 transform transition duration-500"
                 />
               </motion.div>
             </div>
