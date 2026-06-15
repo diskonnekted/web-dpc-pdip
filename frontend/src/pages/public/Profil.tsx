@@ -217,7 +217,7 @@ const Profil = () => {
                         href="https://pdippurbalingga.or.id/assets/docs/AD-ART-PDIP.pdf" 
                         target="_blank" 
                         rel="noopener noreferrer" 
-                        className="w-full bg-gradient-to-r from-brand-red to-brand-red-dark hover:from-brand-red-dark hover:to-brand-red-darkest text-white font-bold py-3.5 px-6 rounded-full inline-flex items-center justify-center gap-2 shadow-lg shadow-brand-red/20 transition-all"
+                        className="w-full bg-gradient-pdi hover:brightness-110 text-white font-bold py-3.5 px-6 rounded-full inline-flex items-center justify-center gap-2 shadow-lg shadow-brand-red/20 transition-all"
                       >
                         <Download size={18} />
                         Download Dokumen PDF
