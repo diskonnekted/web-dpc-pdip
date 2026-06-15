@@ -201,6 +201,21 @@ app.put('/api/members/:id', async (req, res) => {
   }
 });
 
+app.get('/api/members/check/:nik', async (req, res) => {
+  try {
+    const { nik } = req.params;
+    const member = await prisma.memberRegistration.findFirst({
+      where: { nik }
+    });
+    if (!member) {
+      return res.status(404).json({ error: 'Data KTA tidak ditemukan' });
+    }
+    res.json(member);
+  } catch (error) {
+    res.status(500).json({ error: 'Gagal memeriksa status keanggotaan' });
+  }
+});
+
 // Aspiration Routes
 app.post('/api/aspirations', async (req, res) => {
   try {

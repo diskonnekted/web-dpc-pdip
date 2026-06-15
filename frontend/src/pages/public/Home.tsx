@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Calendar, ArrowRight, CheckCircle2, Plus } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
   // Simple countdown logic for the Event section
@@ -101,6 +102,64 @@ const Home = () => {
       </section>
       */}
 
+      {/* 2. Sambutan Ketua DPC Section (Purbalingga feature match) */}
+      <section className="py-20 bg-gradient-to-br from-white via-zinc-50 to-white relative overflow-hidden">
+        <div className="container mx-auto px-4 md:px-8">
+          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+            {/* Image Container with Elegant Red/Gold Border Effects */}
+            <div className="w-full lg:w-2/5 flex justify-center relative">
+              <div className="relative group">
+                <div className="absolute -inset-4 bg-gradient-to-tr from-brand-red-darkest via-brand-red to-brand-gold rounded-2xl opacity-10 blur-xl group-hover:opacity-20 transition duration-500"></div>
+                <div className="absolute -inset-1 bg-gradient-to-tr from-brand-red via-brand-gold to-brand-red rounded-2xl opacity-30 group-hover:opacity-50 transition duration-500"></div>
+                
+                <div className="relative bg-zinc-950 p-1.5 rounded-2xl shadow-2xl overflow-hidden max-w-[340px]">
+                  <img 
+                    src="/ketua_dpc_nuryanto.png" 
+                    alt="H. Nuryanto - Ketua DPC PDIP Banjarnegara" 
+                    className="w-full h-auto object-cover rounded-xl grayscale group-hover:grayscale-0 transition duration-700" 
+                  />
+                  <div className="absolute bottom-4 left-4 right-4 bg-zinc-950/90 border border-white/10 backdrop-blur-md p-4 rounded-lg">
+                    <h4 className="font-bold text-white text-lg">H. Nuryanto</h4>
+                    <p className="text-brand-gold text-xs font-bold uppercase tracking-widest mt-1">Ketua DPC PDI Perjuangan</p>
+                    <p className="text-zinc-400 text-[10px] mt-0.5">Masa Bakti 2025 - 2030</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Greeting Message */}
+            <div className="w-full lg:w-3/5">
+              <div className="flex items-center space-x-2 mb-4">
+                <span className="h-[2px] w-8 bg-brand-gold"></span>
+                <span className="text-brand-red font-bold text-xs uppercase tracking-wider">Sambutan Ketua DPC</span>
+              </div>
+              <h2 className="text-3xl md:text-5xl font-black text-brand-dark mb-6 leading-tight uppercase">
+                Terus Melangkah dalam <br/>
+                <span className="text-brand-red bg-gradient-to-r from-brand-red to-brand-red bg-clip-text text-transparent">Satu Barisan Gotong Royong</span>
+              </h2>
+              <div className="relative">
+                <span className="absolute -top-6 -left-4 text-brand-red/10 text-8xl font-serif select-none">“</span>
+                <p className="text-gray-700 text-lg leading-relaxed mb-6 font-medium italic relative z-10">
+                  "PDI Perjuangan bukan sekadar wadah politik, melainkan sebuah alat perjuangan bagi wong cilik. Kami berkomitmen untuk terus bergerak secara solid, merapatkan barisan, dan mengedepankan gotong royong demi terwujudnya keadilan sosial bagi seluruh masyarakat Banjarnegara."
+                </p>
+              </div>
+              <p className="text-gray-600 leading-relaxed mb-8">
+                Selamat datang di portal informasi resmi DPC PDI Perjuangan Kabupaten Banjarnegara. Melalui wadah digital ini, kami berupaya menyajikan transparansi kegiatan, memudahkan akses layanan publik seperti KIP/PIP, dan mendengar aspirasi masyarakat secara langsung. Mari bersinergi dan bergotong royong membangun masa depan yang lebih baik.
+              </p>
+              
+              <div className="flex flex-wrap gap-4">
+                <Link to="/profil" className="inline-flex items-center bg-brand-red hover:bg-red-800 text-white font-bold py-3 px-6 rounded-md shadow-lg shadow-brand-red/25 transition-all text-sm uppercase tracking-wide">
+                  Selengkapnya Visi & Misi <ArrowRight className="ml-2" size={16} />
+                </Link>
+                <a href="#agenda" className="inline-flex items-center border border-zinc-300 hover:border-brand-red hover:text-brand-red font-bold py-3 px-6 rounded-md transition-all text-sm text-gray-700 uppercase tracking-wide">
+                  Lihat Agenda Partai
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* 3. About Us Section */}
       <section className="py-24 bg-white">
         <div className="container mx-auto px-4 md:px-8">
@@ -199,6 +258,62 @@ const Home = () => {
                 <h3 className="font-bold text-xl text-brand-dark group-hover:text-brand-red transition-colors leading-tight">{program.title}</h3>
                 <p className="text-gray-500 mt-3 text-sm line-clamp-3">Sed ut perspiciatis unde omnis iste natus ut perspiciatis unde omnis iste perspiciatis ut perspiciatis unde.</p>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Instagram Feed Grid Section (Features inspired by Purbalingga Website) */}
+      <section className="py-20 bg-zinc-50 border-t border-b border-zinc-100">
+        <div className="container mx-auto px-4 md:px-8">
+          <div className="flex flex-col md:flex-row justify-between items-center mb-12 gap-4">
+            <div className="flex items-center gap-4">
+              <div className="bg-brand-red/10 p-3 rounded-full text-brand-red">
+                <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                </svg>
+              </div>
+              <div>
+                <h3 className="text-2xl font-black text-brand-dark uppercase tracking-tight">Kabar Banteng Instagram</h3>
+                <p className="text-gray-500 text-sm">Ikuti update kegiatan terbaru kami melalui akun resmi @pdipbanjarnegara</p>
+              </div>
+            </div>
+            <a 
+              href="https://instagram.com" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="bg-zinc-950 hover:bg-brand-red text-white font-bold py-3 px-6 rounded-md transition-all text-sm uppercase tracking-wider flex items-center"
+            >
+              Follow Instagram
+            </a>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            {[
+              { text: "Rapat Koordinasi DPC", img: "/media/banteng-banjarnegara-mulai-panaskan-mesin-partai-00969umqUf.jpg" },
+              { text: "Bakti Sosial & Gotong Royong", img: "/media/84165_pdip-cegah-stunting.jpeg" },
+              { text: "Apel Siaga Kader Juang", img: "/media/apel-siaga-dpc-pdip-banjarnegara-jawa-tengah-sabtu-2762020_169.jpeg" },
+              { text: "Konsolidasi PAC Kecamatan", img: "/media/banteng-banjarnegara-mulai-panaskan-mesin-partai-00969umqUf.jpg" },
+              { text: "Sosialisasi Program KIP/PIP", img: "/media/apel-siaga-dpc-pdip-banjarnegara-jawa-tengah-sabtu-2762020_169.jpeg" },
+              { text: "Peringatan HUT PDI Perjuangan", img: "/media/84165_pdip-cegah-stunting.jpeg" }
+            ].map((post, index) => (
+              <a 
+                key={index} 
+                href="https://instagram.com" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="group relative aspect-square rounded-xl overflow-hidden bg-zinc-900 shadow-md border border-zinc-200"
+              >
+                <img 
+                  src={post.img} 
+                  alt={post.text} 
+                  className="w-full h-full object-cover group-hover:scale-110 transition duration-500 opacity-90 group-hover:opacity-100" 
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col justify-end p-4">
+                  <span className="text-white text-xs font-bold leading-tight">{post.text}</span>
+                  <span className="text-brand-gold text-[10px] uppercase font-bold tracking-widest mt-1">@pdipbanjarnegara</span>
+                </div>
+              </a>
             ))}
           </div>
         </div>
